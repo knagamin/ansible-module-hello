@@ -1,0 +1,24 @@
+---
+- name: Test hello module
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: run the new hello module
+      hello:
+        name: 'Red Hat'
+      register: result
+
+    - name: dump test output
+      debug:
+        msg: '{{ result }}'
+
+    - name: run the new hello module morning
+      hello:
+        name: 'Red Hat'
+        period: evening
+      register: result
+
+    - name: dump test output
+      debug:
+        msg: '{{ result }}'

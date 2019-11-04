@@ -4,11 +4,11 @@
   gather_facts: false
 
   tasks:
-    - name: run the new hello module
+    - name: run hello module
       hello:
-        name: 'Red Hat'
+        name: 'redhat'
       register: result
 
-    - name: dump test output
+    - name: dump result
       debug:
         msg: '{{ result }}'

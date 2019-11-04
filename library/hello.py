@@ -8,6 +8,7 @@ def main():
     module = AnsibleModule(
         argument_spec=dict(
             name=dict(type='str', required=True),
+            hour=dict(type='int'),
         )
     )
 
@@ -16,7 +17,13 @@ def main():
         message=""
     )
 
-    result['message'] = "Hello, " + module.params['name']
+    result['message'] = "Hello, {}.".format(module.params['name'])
+
+    if module.params['hour'] is not None:
+        result['message'] = "{} It's {} o'clock".format(
+            result['message'],
+            module.params['hour']
+        )
 
     module.exit_json(**result)
 

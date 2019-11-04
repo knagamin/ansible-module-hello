@@ -7,14 +7,18 @@ def run_module():
 
     module = AnsibleModule(
         argument_spec=dict(
-                name=dict(type='str', required=True),
+            name=dict(type='str', required=True),
         )
     )
 
-    msg = "Hello, " + module.params['name']
+    result = dict(
+        changed=False,
+        message=""
+    )
 
-    response = {"msg": msg}
-    module.exit_json(changed=False, greeting=response)
+    result['message'] = "Hello, " + module.params['name']
+
+    module.exit_json(**result)
 
 
 def main():
